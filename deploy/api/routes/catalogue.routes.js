@@ -8,6 +8,7 @@ module.exports = app => {
 
    
     router.get("/", checkJwt,catalogue.get);
+    router.get("/search", checkJwt,catalogue.search);
   
     app.use('/api/catalogue', router);
   };
