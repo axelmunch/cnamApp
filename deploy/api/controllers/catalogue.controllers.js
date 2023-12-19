@@ -18,7 +18,11 @@ exports.get = (req, res) => {
   res.send(catalogue);
 };
 
-// exports.search = (req, res) => {
+exports.search = (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+    
+  return res.send(catalogue)
+
 //   let searchText = req.query.q ?? "";
 //   searchText = searchText.toLowerCase();
 //   let priceInf = req.query.priceInf ?? 0;
@@ -40,4 +44,4 @@ exports.get = (req, res) => {
 //   }
 
 //   res.send(search);
-// };
+};
