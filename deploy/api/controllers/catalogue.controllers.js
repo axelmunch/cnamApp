@@ -11,37 +11,38 @@ const catalogue = [
   { ref: "J", name: "Shower gel", price: 12.5 },
 ];
 
+function getRecommended() {
+  return catalogue;
+}
+
 exports.get = (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
   // Articles recommandés
-  res.send(catalogue);
+  res.send(getRecommended());
 };
 
 exports.search = (req, res) => {
+  let searchText = req.query.q ?? "";
+  searchText = searchText.toLowerCase();
+  let priceInf = req.query.priceInf ?? 0;
+
   res.setHeader("Content-Type", "application/json");
-    
-  return res.send(catalogue)
 
-//   let searchText = req.query.q ?? "";
-//   searchText = searchText.toLowerCase();
-//   let priceInf = req.query.priceInf ?? 0;
+  if (searchText == "" && priceInf == 0) {
+    res.send(getRecommended());
+    return;
+  }
 
-//   if (searchText == "" && priceInf == 0) {
-//     return this.get(req, res);
-//   }
+  // Filtrer
+  let search = catalogue.filter(
+    (item) =>
+      item.name.toLowerCase().includes(searchText) ||
+      item.price.toString().includes(searchText)
+  );
+  if (priceInf != 0) {
+    search = search.filter((item) => item.price <= priceInf);
+  }
 
-//   res.setHeader("Content-Type", "application/json");
-
-//   // Filtrer
-//   let search = catalogue.filter(
-//     (item) =>
-//       item.name.toLowerCase().includes(searchText) ||
-//       item.price.toString().includes(searchText)
-//   );
-//   if (priceInf != 0) {
-//     search = search.filter((item) => item.price <= priceInf);
-//   }
-
-//   res.send(search);
+  res.send(search);
 };
