@@ -70,6 +70,7 @@ exports.create = (req, res) => {
 
   // Create a Utilisateur
   const utilisateur = {
+    id: uuidv4(),
     nom: req.body.nom ?? null,
     prenom: req.body.prenom ?? null,
     adresse: req.body.adresse ?? null,
@@ -79,6 +80,7 @@ exports.create = (req, res) => {
     sexe: req.body.sexe ?? null,
     login: req.body.login,
     password: req.body.password,
+    telephone: req.body.telephone ?? null,
   };
 
   // Login and password required
