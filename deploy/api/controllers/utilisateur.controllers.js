@@ -70,7 +70,7 @@ exports.create = (req, res) => {
 
   // Create a Utilisateur
   const utilisateur = {
-    id: uuidv4(),
+    // id: uuidv4(),
     nom: req.body.nom ?? null,
     prenom: req.body.prenom ?? null,
     adresse: req.body.adresse ?? null,

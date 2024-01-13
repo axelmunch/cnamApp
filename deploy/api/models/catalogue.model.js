@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
   const Catalogue = sequelize.define("catalogue", {
     id: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
