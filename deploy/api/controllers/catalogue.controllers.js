@@ -3,9 +3,9 @@ const Catalogue = db.catalogue;
 const Op = db.Sequelize.Op;
 
 exports.get = (req, res) => {
-  let searchText = req.query.q; // ?? "";
+  let searchText = req.query.q ?? "";
   searchText = searchText.toLowerCase();
-  let priceInf = req.query.priceInf; // ?? 0;
+  let priceInf = req.query.priceInf ?? 0;
 
   let searchCond = [];
   if (searchText.length > 0) {
